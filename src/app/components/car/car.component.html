@@ -1,0 +1,41 @@
+<app-navi></app-navi>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2" style="margin-top: 20px;">
+        <app-filter></app-filter>
+      </div>
+      <div class="col-md-10" >
+        <div *ngIf="dataLoaded==false" class="spinner-border" role="status" >
+          <span class="visually-hidden"></span>
+        </div>
+        <div class="row" id="ads" *ngIf="dataLoaded==true">
+          <div  class="col-12 col-sm-11 col-md-9 col-lg-5 col-xl-4 " *ngFor="let car of cars | filterPipe:filterText">
+            <div class="card mb-4 mr-4" >
+              <div class="card-rounded" >
+                <div class="card-image">
+
+
+                  <img class="img-fluid" src="{{apiUrl}}{{car.imagePath}}" style="width: 100%;height: 173px;" />
+                </div>
+                <div class="text-center">
+                  <h5>{{car.brandName}} {{car.modelName}}</h5>
+                </div>
+                <div class="card-body text-center">
+                  <div class="card-image-overlay m-auto">
+                    <span class="card-detail-badge">Fiyat:{{car.dailyPrice}} <fa-icon [icon]="faLira"></fa-icon></span><br>
+                    <span class="card-detail-badge">Renk:{{car.colorName}}</span> <br>
+                    <span class="card-detail-badge">Model Yılı:{{car.modelYear}}</span> <br>
+                  </div>
+                  <button type="button" routerLink="/car/details/{{car.id}}" class="btn btn-info" style="border-radius: 10px; width: 35%">Detaylar</button>
+                </div>
+              </div>
+            </div>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
